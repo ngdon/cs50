@@ -11,13 +11,13 @@ string GetCreditType(long long credit_card_num);
 int main(void) {
     // First, get user's credit card number.
     // Using long long which is 64 bits long to have enough room to store up to 18 digits.
-    long long credit_card_num = get_long_long("Credit card number: ");
+    long long credit_card_num = get_long_long("Number: ");
 
     // Check if credit card number is valid and print the card type if the number is valid.
     if (VerifyCreditNumber(credit_card_num)) {
         printf("%s\n", GetCreditType(credit_card_num));
     } else {
-        printf("Invalid credit card number.\n");
+        printf("INVALID\n");
     }
 }
 
@@ -30,16 +30,16 @@ bool VerifyCreditNumber(long long credit_card_num) {
 
     int not_doubled_sum = 0;
     int doubled_sum = 0;
-    for (int i = 0; credit_card_num > 0; i++) {
+    for (int num_digits = 0; credit_card_num > 0; num_digits++) {
         // If the digit is the 1st, 3rd, 5th...
-        if (i%2 == 0) {
+        if (num_digits%2 == 0) {
             // Add the digit to the sum of digits not doubled.
             not_doubled_sum+=credit_card_num%10;
             // Remove the digit that was just added.
             credit_card_num/=10;
         }
         // If the digit is the 2nd, 4th, 6th..
-        if (i%2 == 1) {
+        if (num_digits%2 == 1) {
             // Double the digit.
             int doubled_digit = (credit_card_num%10 * 2);
             // Add the digits of the result above together.
@@ -49,6 +49,21 @@ bool VerifyCreditNumber(long long credit_card_num) {
             }
             // Remove the digit that was just added.
             credit_card_num/=10;
+        }
+        // Check if length of credit card number provided is correct.
+        // AMEX uses 15 digits.
+        // MASTERCARD uses 16 digits.
+        // VISA uses 13 and 16 digits.
+        if (credit_card_num == 0) {
+            // Add one because we started counting at 0.
+            switch(num_digits + 1) {
+                case 13 :
+                case 15 :
+                case 16 :
+                    break;
+                default :
+                    return false;
+            }
         }
     }
     if ((not_doubled_sum + doubled_sum)%10 == 0) {
@@ -72,21 +87,21 @@ string GetCreditType(long long credit_card_num) {
     switch (credit_card_num) {
         case 34 :
         case 37 :
-            return "American Express";
+            return "AMEX";
             break;
         case 51 :
         case 52 :
         case 53 :
         case 54 :
         case 55 :
-            return "MasterCard";
+            return "MASTERCARD";
             break;
         default :
             // Check if the first digit is a 4.
             if (credit_card_num/10 == 4) {
-                return "Visa";
+                return "VISA";
             } else {
-                return "Invaid credit card number.";
+                return "INVALID";
             }
     }
 }
