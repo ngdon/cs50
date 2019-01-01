@@ -10,7 +10,7 @@ string GetCreditType(long long credit_card_num);
 
 int main(void) {
     // First, get user's credit card number.
-    // Using long long which is 64 bits long to have enough room to store up to 18 digits.
+    // Using long long which is 64 bits long to have enough room to store up to 18 digits (approximately).
     long long credit_card_num = get_long_long("Number: ");
 
     // Check if credit card number is valid and print the card type if the number is valid.
