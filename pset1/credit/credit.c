@@ -41,11 +41,11 @@ bool VerifyCreditNumber(long long credit_card_num) {
         // If the digit is the 2nd, 4th, 6th..
         if (i%2 == 1) {
             // Double the digit.
-            int digit = (credit_card_num%10 * 2);
-            // Add the digits of the doubled digit above together.
-            while (digit > 0) {
-                doubled_sum+=digit%10;
-                digit/=10;
+            int doubled_digit = (credit_card_num%10 * 2);
+            // Add the digits of the result above together.
+            while (doubled_digit > 0) {
+                doubled_sum+=doubled_digit%10;
+                doubled_digit/=10;
             }
             // Remove the digit that was just added.
             credit_card_num/=10;
