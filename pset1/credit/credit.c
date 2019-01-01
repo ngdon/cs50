@@ -9,17 +9,6 @@ bool VerifyCreditNumber(long long credit_card_num);
 string GetCreditType(long long credit_card_num);
 
 int main(void) {
-    // Notes:
-    // American Express numbers all start with 34 or 37.
-    // MasterCard numbers start with 51, 52, 53, 54, or 55.
-    // Visa numbers start with 4.
-
-    // CheckSum:
-    // 1. Multiply every other digit by 2, starting with the number's second-to-last digit, then add those products' !!digits!!
-    // together.
-    // 2. Add the sum to the sum of the digits that weren't multiplied by 2.
-    // 3. If the total's last digit is 0 (modulo 10 is 0) the number is valid.
-
     // First, get user's credit card number.
     // Using long long which is 64 bits long to have enough room to store up to 18 digits.
     long long credit_card_num = get_long_long("Credit card number: ");
@@ -33,6 +22,12 @@ int main(void) {
 }
 
 bool VerifyCreditNumber(long long credit_card_num) {
+    // CheckSum algorithm:
+    // 1. Multiply every other digit by 2, starting with the number's second-to-last digit, then add those products' !!digits!!
+    // together.
+    // 2. Add the sum to the sum of the digits that weren't multiplied by 2.
+    // 3. If the total's last digit is 0 (modulo 10 is 0) the number is valid.
+
     int not_doubled_sum = 0;
     int doubled_sum = 0;
     for (int i = 0; credit_card_num > 0; i++) {
@@ -65,6 +60,10 @@ bool VerifyCreditNumber(long long credit_card_num) {
 }
 
 string GetCreditType(long long credit_card_num) {
+    // American Express numbers all start with 34 or 37.
+    // MasterCard numbers start with 51, 52, 53, 54, or 55.
+    // Visa numbers start with 4.
+
     // Strip all the digits except for the first two.
     do {
         credit_card_num/=10;
