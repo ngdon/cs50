@@ -5,7 +5,7 @@
 // Takes a credit card number and returns true if the number passes Luhn's algorithm.
 bool VerifyCreditNumber(long long credit_card_num);
 
-// Takes a credit card number and returns the type of card it is as a string.
+// Takes a credit card number and returns the type of card as a string.
 string GetCreditType(long long credit_card_num);
 
 int main(void) {
