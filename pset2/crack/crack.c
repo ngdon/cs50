@@ -4,17 +4,18 @@
  * 2. Password is no longer than 5 characters.
  * 3. Passwords are composed entirely of alphabetical characters (uppercase and/or lowercase).
  *
- * Results:
- * anushree:50xcIMJ0y.RXo   |   0.191s  | YES
- * brian:50mjprEcqC/ts      |   0.004s  | CA
- * bjbrown:50GApilQSG3E2    |
- * lloyd:50n0AAUD.pL8g      |
- * malan:50CcfIk1QrPr6      |
- * maria:509nVI8B9VfuA      |   0.005s  | TF
- * natmelo:50JIIyhDORqMU    |   16.381s | nope
- * rob:50JGnXUgaafgc        |   6.252s  | ROFL
- * stelios:51u8F0dkeDSbY    |   0.007s  | NO
- * zamyla:50cI2vYkF0YU2     |   0.124s  | LOL
+ * Results (times from unix "time" program, using real time):
+ * user:hash                |   runtime     | Plaintext Password
+ * anushree:50xcIMJ0y.RXo   |   0.191s      | YES
+ * brian:50mjprEcqC/ts      |   0.004s      | CA
+ * bjbrown:50GApilQSG3E2    |   29m57.164s  | UPenn
+ * lloyd:50n0AAUD.pL8g      |   35m22.893s  | lloyd
+ * malan:50CcfIk1QrPr6      |   14m2.398s   | maybe
+ * maria:509nVI8B9VfuA      |   0.005s      | TF
+ * natmelo:50JIIyhDORqMU    |   16.381s     | nope
+ * rob:50JGnXUgaafgc        |   6.252s      | ROFL
+ * stelios:51u8F0dkeDSbY    |   0.007s      | NO
+ * zamyla:50cI2vYkF0YU2     |   0.124s      | LOL
  */
 
 #define _XOPEN_SOURCE
@@ -59,6 +60,7 @@ int main(int argc, string argv[]) {
                     return 0;
                 }
                 if (guess == 'Z') {
+                    // Reached end of uppercase letter range, move to lower case range.
                     guess = 'a';
                 } else {
                     guess++;
@@ -67,7 +69,7 @@ int main(int argc, string argv[]) {
             // Increment characters to the right.
             for (int k = 1; k > 0;) {
                 switch(pwd[k]) {
-                    // Reached end of lowercase range, go back to uppercase range.
+                    // Reached end of lowercase range, go back to uppercase range and check next character.
                     case 'z':
                         pwd[k] = 'A';
                         k++;
@@ -79,7 +81,7 @@ int main(int argc, string argv[]) {
                         break;
                     // Reached end of password. Password must be longer.
                     case '\0':
-                        // Exit out of guessing loop and increase password by one character.
+                        // Exit out of guessing loop and increase password length by one character.
                         end = true;
                         k = -1;
                         break;
