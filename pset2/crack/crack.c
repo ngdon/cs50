@@ -1,10 +1,10 @@
-#define _XOPEN_SOURCE
-#include <cs50.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-
 /**
+ * Program that uses a brute force method to cracks passwords assuming:
+ * 1. Password has been hashed using C's DES-based 'crypt' function.
+ * 2. Password is no longer than 5 characters.
+ * 3. Passwords are composed entirely of alphabetical characters (uppercase and/or lowercase).
+ *
+ * Results:
  * anushree:50xcIMJ0y.RXo   |   0.191s  | YES
  * brian:50mjprEcqC/ts      |   0.004s  | CA
  * bjbrown:50GApilQSG3E2    |
@@ -15,15 +15,19 @@
  * rob:50JGnXUgaafgc        |   6.252s  | ROFL
  * stelios:51u8F0dkeDSbY    |   0.007s  | NO
  * zamyla:50cI2vYkF0YU2     |   0.124s  | LOL
- *
-**/
+ */
 
+#define _XOPEN_SOURCE
+#include <cs50.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
 
 int main(int argc, string argv[]) {
     // Check for correct number of arguments.
     if (argc != 2) {
-        printf("Invalid number of arguments.\n");
+        printf("Invalid number of arguments. Usage: ./crack hash\n");
         return 1;
     }
 
