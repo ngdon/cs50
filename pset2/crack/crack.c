@@ -46,7 +46,7 @@ int main(int argc, string argv[]) {
         pwd[i+1] = '\0';
         bool end = false;
         do {
-            // Check if password is found.
+            // Increment left most character and check hash.
             for (int guess = 'A'; guess <= 'z';) {
                 pwd[0] = guess;
                 const string guess_hash = crypt(pwd, salt);
@@ -60,7 +60,7 @@ int main(int argc, string argv[]) {
                     guess++;
                 }
             }
-            // Increment next letter.
+            // Increment characters to the right.
             for (int k = 1; k > 0;) {
                 switch(pwd[k]) {
                     // Reached end of lowercase range, go back to uppercase range.
