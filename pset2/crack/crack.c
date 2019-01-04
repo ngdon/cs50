@@ -4,14 +4,19 @@
 #include <stdio.h>
 #include <string.h>
 
-// Tested on
-/*
-1        || 50Xu9TV42tQOg || 0.002s      || 3,420 possible passwords
-al       || 507IH4BV0kgzc || 0.789s      || 324,900 possible passwords
-RoR      || 50b5ILzBEDplw || 45.780s     || 30,865,500 possible passwords
-Ruby     || 50VfakyL0ptK. || 4170.874s   || 2,932,222,500 possible passwords
-Linux    || 50u8HReKZleek || 355826.965s || 278,561,137,500 possible passwords
-*/
+/**
+ * anushree:50xcIMJ0y.RXo   |   0.191s  | YES
+ * brian:50mjprEcqC/ts      |   0.004s  | CA
+ * bjbrown:50GApilQSG3E2    |
+ * lloyd:50n0AAUD.pL8g      |
+ * malan:50CcfIk1QrPr6      |
+ * maria:509nVI8B9VfuA      |   0.005s  | TF
+ * natmelo:50JIIyhDORqMU    |   16.381s | nope
+ * rob:50JGnXUgaafgc        |   6.252s  | ROFL
+ * stelios:51u8F0dkeDSbY    |   0.007s  | NO
+ * zamyla:50cI2vYkF0YU2     |   0.124s  | LOL
+ *
+**/
 
 
 
