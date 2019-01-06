@@ -7,10 +7,6 @@
 
 #include "helpers.h"
 
-// Notes in an octave
-const string NOTES_AFTER_A[] = { "A#", "B"};
-const string NOTES_BEFORE_A[] = {"G#", "G", "F#", "F", "E", "D#", "D", "C#", "C"};
-
 // Converts a fraction formatted as X/Y to eighths
 // Assuming that denominator is always a power of 2, so no check for that.
 int duration(string fraction)
